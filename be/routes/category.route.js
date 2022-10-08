@@ -42,4 +42,22 @@ router.post("/add", (req, res) => {
   });
 });
 
+router.get("/all",(req,res)=>{
+  CatSchema.find({},(err,data)=>{
+    if(err) res.status(500).json({msg:err.message})
+    if(!data) res.status(400).json({msg:"SOmething Wrong"})
+    res.status(200).json({msg:data})
+  })
+})
+
+router.delete("/delete/:_id",(req,res)=>{
+  const {_id}=req.params
+  CatSchema.findByIdAndRemove({_id},(err,data)=>{
+    if(err) res.status(500).json({msg:err.message})
+    if(!data) res.status(400).json({msg:"SOmething Wrong"})
+    res.status(200).json({msg:data})
+  })
+
+})
+
 module.exports = router;

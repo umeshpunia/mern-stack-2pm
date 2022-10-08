@@ -1,6 +1,29 @@
 import { Link } from "react-router-dom";
+import {apiUrl,imgUrl} from '../config'
+import axios from 'axios'
+import { useEffect, useState } from "react";
+
 
 function Category() {
+
+  const [categories,setCategories]=useState([])
+
+  useEffect(()=>{
+
+    getCat()
+  },[])
+
+  async function getCat(){
+    try {
+      let res=await axios.get(`${apiUrl}/category/all`)
+      setCategories(res.data.msg)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  console.log(categories)
+
   return (
     <>
       <div className="container my-5">
@@ -18,12 +41,24 @@ function Category() {
             </tr>
           </thead>
           <tbody>
-            <tr>
+           {
+            categories?.map(category=>(
+              <tr key={category._id}>
               <th>1</th>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
+              <td>{category?.name}</td>
+              <td>
+                <img height="50" src={`${imgUrl}/categories/${category?.picture}`} alt={`abc`} />
+                </td>
+              <td>
+                <a 
+                href={`http://localhost/${category._id}`}
+                target="_blank"
+                 className='btn btn-warning'>View</a>
+              </td>
+              
             </tr>
+            ))
+           }
           </tbody>
         </table>
       </div>
@@ -32,3 +67,7 @@ function Category() {
 }
 
 export default Category;
+
+
+
+// http://localhost:8080/assets/images/categories/
