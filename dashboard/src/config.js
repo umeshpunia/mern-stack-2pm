@@ -1,4 +1,4 @@
-const apiUrl="http://localhost:8080/api/admin/v1"
+const apiUrl="https://jellyfish-app-nshh9.ondigitalocean.app/api/admin/v1"
 
-const imgUrl="http://localhost:8080/images"
+const imgUrl="https://jellyfish-app-nshh9.ondigitalocean.app/images"
 export {apiUrl,imgUrl}
