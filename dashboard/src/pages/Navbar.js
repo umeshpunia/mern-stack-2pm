@@ -58,6 +58,11 @@ function Navbar() {
                   Categories
                 </Link>
               </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/products">
+                  Products
+                </Link>
+              </li>
 
               <li className="nav-item">
                 <a onClick={logout} className="nav-link">
