@@ -1,0 +1,5 @@
+/be/node_modules
+/dashboard/node_modules
+/front/node_modules
+
+/be/.env
