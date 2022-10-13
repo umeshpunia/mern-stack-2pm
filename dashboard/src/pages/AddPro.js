@@ -41,6 +41,7 @@ function AddPro() {
 
   async function addCat(e) {
     e.preventDefault();
+    
 
     let fData = new FormData();
     fData.append("name", name);
@@ -91,7 +92,7 @@ function AddPro() {
               </div>
               <div className="mb-3">
                 <label>Category</label>
-                <select className="form-control" onSelect={e=>setCategory(e.target.value)}>
+                <select className="form-control" onChange={e=>setCategory(e.target.value)}>
                     <option selected disabled>Choose Category</option>
                    {
                     categories?.map(cat=> <option key={cat._id} value={cat._id}>{cat.name}</option>)

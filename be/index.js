@@ -31,6 +31,7 @@ app.get("/", (req, res) => {
 app.use("/api/admin/v1/user", require("./routes/user.route"));
 app.use("/api/admin/v1/category", require("./routes/category.route"));
 app.use("/api/admin/v1/product", require("./routes/product.routes"));
+app.use("/api/v1/front", require("./routes/front.route"));
 
 // server
 app.listen(port, () => {
