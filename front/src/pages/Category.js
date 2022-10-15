@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import axios from 'axios'
 
 import {apiUrl,mediaUrl} from '../config'
@@ -7,20 +7,27 @@ import {apiUrl,mediaUrl} from '../config'
 function Category() {
 
     const [category,setCategory]=useState(null)
+    const [products,setProducts]=useState([])
     const {id}=useParams()
 
     useEffect(()=>{
 
         getCat()
 
-    })
+    },[])
 
 
 
     async function getCat(){
         try {
             let res=await axios.get(`${apiUrl}/category/${id}`)
-            setCategory(res.data.msg)
+            if(res){
+              setCategory(res.data.msg)
+              let proRes=await axios.get(`${apiUrl}/products/${id}`)
+              setProducts(proRes.data.msg)
+
+
+            }
         } catch (error) {
             console.log(error)
         }
@@ -54,6 +61,8 @@ function Category() {
         </div>
       </section>
 
+      
+
       {/* all products related to this category */}
       <section className="fruit_section layout_padding">
         <div className="container">
@@ -64,15 +73,20 @@ function Category() {
         </div>
         <div className="container-fluid">
           <div className="fruit_container">
-            {/* {categories?.map((cat) => (
-              <div className="box" key={cat._id}>
-                <img src={`${mediaUrl}/categories/${cat.picture}`} alt="" />
+          {
+        products?.length == 0 ? <h3>No Products</h3>:(
+          products?.map((pro) => (
+              <div className="box" key={pro._id}>
+                <img src={`${mediaUrl}/products/${pro.picture}`} alt="" />
                 <div className="link_box">
-                  <h5>{cat.name}</h5>
-                  <Link to={`/category/${cat._id}`}>View Now </Link>
+                  <h5>{pro.name}</h5>
+                  <Link to={`/product/${pro._id}`}>View Now </Link>
                 </div>
               </div>
-            ))} */}
+            ))
+        )
+      }
+            
           </div>
         </div>
       </section>

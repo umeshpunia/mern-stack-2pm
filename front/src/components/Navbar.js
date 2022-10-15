@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 function Navbar() {
   return (
@@ -23,24 +24,24 @@ function Navbar() {
               <div className="d-flex flex-column flex-lg-row align-items-center">
                 <ul className="navbar-nav">
                   <li className="nav-item active">
-                    <a className="nav-link" href="index.html"
-                      >Home <span className="sr-only">(current)</span></a
+                    <Link className="nav-link" to="/"
+                      >Home <span className="sr-only">(current)</span></Link
                     >
                   </li>
                   <li className="nav-item">
-                    <a className="nav-link" href="about.html">About </a>
+                    <Link className="nav-link" to="/about">About </Link>
                   </li>
                   <li className="nav-item">
-                    <a className="nav-link" href="fruit.html">Our Fruit </a>
+                    <Link className="nav-link" to="/cart">Cart <sup>2</sup></Link>
                   </li>
                   <li className="nav-item">
-                    <a className="nav-link" href="testimonial.html">Testimonial</a>
+                    <Link className="nav-link" to="testimonial.html">Testimonial</Link>
                   </li>
                   <li className="nav-item">
-                    <a className="nav-link" href="contact.html">Contact Us</a>
+                    <Link className="nav-link" to="contact.html">Contact Us</Link>
                   </li>
                   <li className="nav-item">
-                    <a className="nav-link" href="#">Login</a>
+                    <Link className="nav-link" to="#">Login</Link>
                   </li>
                 </ul>
                 <form
