@@ -1,7 +1,10 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 
 function Navbar() {
+  
+const myCart=useSelector(s=>s.cart)
   return (
     <>
          <section className="nav_section">
@@ -32,7 +35,7 @@ function Navbar() {
                     <Link className="nav-link" to="/about">About </Link>
                   </li>
                   <li className="nav-item">
-                    <Link className="nav-link" to="/cart">Cart <sup>2</sup></Link>
+                    <Link className="nav-link" to="/cart">Cart <sup>{myCart.length}</sup></Link>
                   </li>
                   <li className="nav-item">
                     <Link className="nav-link" to="testimonial.html">Testimonial</Link>

@@ -1,6 +1,16 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { mediaUrl } from "../config";
+import { removeFromCart } from "../store/cartSlice";
+import {Link} from 'react-router-dom'
 
 function Cart() {
+const dispatch=useDispatch()
+const myCart=useSelector(s=>s.cart)
+const email=localStorage.getItem("login_email")
+
+
+let cartTotal=0
 
     function remove(){
         alert("removed")
@@ -9,7 +19,7 @@ function Cart() {
     <>
       <div className="container my-5">
         <h1 className="text-center my-5">My Cart</h1>
-        <table class="table">
+        <table className="table">
           <thead>
             <tr>
               <th>#</th>
@@ -20,25 +30,39 @@ function Cart() {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <th>1</th>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>&#8377;100</td>
-              <td>
-                <span style={{fontWeight:'bold'}} onClick={remove}>x</span>
-              </td>
-            </tr>
+ {
+  myCart?.map(pro=>(
+    
+    <tr key={pro?._id}>
+    {
+      cartTotal=cartTotal+parseFloat(pro.price)
+    }
+    <th>1</th>
+    <td>{pro?.name}</td>
+    <td>
+      <img width={50} src={`${mediaUrl}/products/${pro?.picture}`} />
+    </td>
+    <td>&#8377;{pro?.price}</td>
+    <td>
+      <span style={{fontWeight:'bold'}} onClick={()=>dispatch(removeFromCart(pro))}>x</span>
+    </td>
+  </tr>
+  ))
+ }
           </tbody>
           <tfoot>
             <tr>
                 <th colSpan={4} className="text-center">Cart Total</th>
-                <th>&#8377;100</th>
+                <th>&#8377;{cartTotal}</th>
             </tr>
           </tfoot>
         </table>
         <div className="text-right">
-        <button className="btn btn-primary">Checkout</button>
+      {
+        
+        !email?<Link to="/">Login</Link>:<button className="btn btn-primary">Checkout</button>
+      }
+
         </div>
       </div>
     </>

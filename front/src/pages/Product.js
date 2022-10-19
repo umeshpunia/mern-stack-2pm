@@ -3,12 +3,17 @@ import axios from 'axios'
 
 import {apiUrl,mediaUrl} from '../config'
 import { useParams } from 'react-router-dom'
+import {useDispatch} from 'react-redux'
+import { addToCart } from '../store/cartSlice'
+
 
 function Product() {
 
     const [product,setProduct]=useState(null)
 
     const {id}=useParams()
+
+    const dispatch=useDispatch()
 
     useEffect(()=>{
         async function getPro(){
@@ -41,7 +46,7 @@ function Product() {
             <img src={`${mediaUrl}/products/${product?.picture}`} alt="" />
           </div>
           <div className="btn-box">
-            <a href=""> Buy Now </a>
+            <button onClick={()=>dispatch(addToCart(product))}> Add To Cart </button>
           </div>
         </div>
       </div>
