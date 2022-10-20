@@ -15,7 +15,7 @@ function Cart() {
     const options = {
       key: "rzp_test_BHuueAoUi9GpMq",
 
-      amount: 10 * 100, // amount should be in paise format i am using here 10 Rupees
+      amount: cartTotal * 100, // amount should be in paise format i am using here 10 Rupees
 
       currency: "INR",
 
@@ -46,6 +46,7 @@ function Cart() {
 
       if (response) {
         // api orders
+        
       }
 
       console.log(response); // do whatever you want to do after response
