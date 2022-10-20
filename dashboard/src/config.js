@@ -1,4 +1,4 @@
-const apiUrl="http://localhost:8080/api/admin/v1"
+const apiUrl="https://mern2pm.herokuapp.com/api/admin/v1"
 
-const imgUrl="http://localhost:8080/images"
+const imgUrl="https://mern2pm.herokuapp.com/images"
 export {apiUrl,imgUrl}

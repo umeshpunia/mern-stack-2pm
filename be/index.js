@@ -21,12 +21,9 @@ mongoose.connect(
 app.use(express.json());
 app.use(cors());
 app.use('/images', express.static('assets/images'))
-
+app.use("/",express.static("public"))
 
 // routes
-app.get("/", (req, res) => {
-  res.send("Hello");
-});
 
 app.use("/api/admin/v1/user", require("./routes/user.route"));
 app.use("/api/admin/v1/category", require("./routes/category.route"));

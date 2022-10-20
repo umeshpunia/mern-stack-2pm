@@ -1,4 +1,4 @@
-const url="http://localhost:8080";
+const url="https://mern2pm.herokuapp.com";
 
 const apiUrl=`${url}/api/v1/front`;
 const mediaUrl=`${url}/images`;
