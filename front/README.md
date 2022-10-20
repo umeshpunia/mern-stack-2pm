@@ -1,70 +1,74 @@
-# Getting Started with Create React App
+Razorpay Gateway
+    Copy THis
+    <script src='https://checkout.razorpay.com/v1/checkout.js'></script>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+function checkoutCart(){
 
-In the project directory, you can run:
+    const options = {
 
-### `npm start`
+    key: 'paste your key here',
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+    amount: 10*100, // amount should be in paise format i am using here 10 Rupees
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+    currency: 'INR',
 
-### `npm test`
+    name: 'My Ecom', // company name or product name
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+    description: 'hello', // product description
 
-### `npm run build`
+    image: '', // company logo or product image
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+    modal: {
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+    // We should prevent closing of the form when esc key is pressed.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+    escape: false,
 
-### `npm run eject`
+    },
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+    notes: {
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+    // include notes if any
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+    },
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+    theme: {
 
-## Learn More
+    color: '#0c238a'
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+    }
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+    };
 
-### Code Splitting
+    options.handler = ((response, error) => {
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+    options.response = response;
 
-### Analyzing the Bundle Size
+    if(response){
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+    // api orders
 
-### Making a Progressive Web App
+    }
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+    console.log(response); // do whatever you want to do after response
 
-### Advanced Configuration
+    console.log(options);
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+    // call your backend api to verify payment signature & capture transaction
 
-### Deployment
+    });
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+    options.modal.ondismiss = (() => {
 
-### `npm run build` fails to minify
+    // handle the case when user closes the form while transaction is in progress
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+    console.log('Transaction cancelled.');
+
+    });
+
+    const rzp = new window.Razorpay(options);
+
+    rzp.open();
+
+    }
