@@ -55,6 +55,23 @@ router.get("/product/:_id",(req,res)=>{
 
 })
 
+router.post("/checkout",(req,res)=>{
+    const {pid,quantity,price,uid,paymentId}=req.body
+
+    let insOrder=OrderSchema({pid,quantity,price,uid,paymentId})
+
+    insOrder.save((err,data)=>{
+        if(err){
+            return res.status(500).json({msg:err.message})
+        }
+        if(!data)
+        return res.status(400).json({msg:"Please try again"})
+
+        res.status(200).json({msg:"Ordered Successfully"})
+    })
+
+})
+
 
 
 

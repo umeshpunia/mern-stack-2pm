@@ -21,6 +21,10 @@ const OrderSchema = new mongoose.Schema(
         type:String,
         default:"placed"
     },
+    paymentId:{
+      type:String,
+      required:true
+    }
   },
   { timestamps: true }
 );
